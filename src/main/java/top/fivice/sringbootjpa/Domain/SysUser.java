@@ -17,10 +17,10 @@ public class SysUser {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "username")
+    private String username;
 
-    @Column(name = "pswd")
+    @Column(name = "password")
     private String password;
 
     public int getId() {
@@ -31,12 +31,12 @@ public class SysUser {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
