@@ -12,6 +12,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
+@EnableSwagger2
 public class SwaggerConfig {
     @Bean
     public Docket buildDocket(){
@@ -25,8 +26,8 @@ public class SwaggerConfig {
 
     private ApiInfo buildApiInfo(){
         return new ApiInfoBuilder()
-                .title("Start restfulAPI Demo")
-                .description("springboot swagger2")
+                .title("restfulAPI 接口文档")
+                .description("由swagger2提供支持")
                 .termsOfServiceUrl("")
                 .contact(new Contact(
                         "Fivice",

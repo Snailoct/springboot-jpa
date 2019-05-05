@@ -16,6 +16,7 @@ spring:
       ddl-auto: update
     show-sql: true
     database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   #thymeleaf 配置
   thymeleaf:
     mode: HTML
@@ -24,10 +25,8 @@ spring:
       content-type: text/html
     #缓存设置为false, 这样修改之后马上生效，便于调试
     cache: false
-  resources:
-    static-locations: classpath:/static,classpath:/public,classpath:/resources,classpath:/META-INF/resources
-  mvc:
-    static-path-pattern: /static/**
+    prefix: classpath:/templates
+    suffix: .html
 #tomcat配置
 server:
   servlet:

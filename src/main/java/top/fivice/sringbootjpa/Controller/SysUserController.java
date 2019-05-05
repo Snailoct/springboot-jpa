@@ -1,5 +1,9 @@
 package top.fivice.sringbootjpa.Controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +24,8 @@ import java.util.List;
  * @ClassName SysUserController
  * @date 2019/4/21 14:40
  **/
-@RestController
+@Api(value = "/api")
+@Controller
 public class SysUserController {
     private final ISysUserDao iSysUserDao;
 
@@ -29,20 +34,16 @@ public class SysUserController {
         this.iSysUserDao = iSysUserDao;
     }
 
-    @RequestMapping("/index")
+    @ApiOperation(value = "跳转到主页面index")
+    @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(){
 
-        return "index";
+        return "/index";
     }
+    @ApiOperation(value = "返回用户列表")
     @RequestMapping(value = "/listUser",method = RequestMethod.GET)
     @ResponseBody
     public List listUser(){
-        return iSysUserDao.findAll();
-    }
-    @RequestMapping("addUser")
-    @ResponseBody
-    public List addUser(SysUser sysUser){
-        iSysUserDao.save(sysUser);
         return iSysUserDao.findAll();
     }
 }
