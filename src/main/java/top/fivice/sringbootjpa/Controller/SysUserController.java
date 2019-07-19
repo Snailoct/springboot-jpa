@@ -1,19 +1,15 @@
 package top.fivice.sringbootjpa.Controller;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import top.fivice.sringbootjpa.Dao.ISysUserDao;
-import top.fivice.sringbootjpa.Domain.SysUser;
+import top.fivice.sringbootjpa.Mapper.SysUserMapper;
 
 import java.util.List;
 
@@ -27,11 +23,13 @@ import java.util.List;
 @Api(value = "/api")
 @Controller
 public class SysUserController {
+    private final SysUserMapper sysUserMapper;
     private final ISysUserDao iSysUserDao;
 
     @Autowired
-    public SysUserController(ISysUserDao iSysUserDao) {
+    public SysUserController(ISysUserDao iSysUserDao, SysUserMapper sysUserMapper) {
         this.iSysUserDao = iSysUserDao;
+        this.sysUserMapper = sysUserMapper;
     }
 
     @ApiOperation(value = "跳转到主页面index")
@@ -45,5 +43,12 @@ public class SysUserController {
     @ResponseBody
     public List listUser(){
         return iSysUserDao.findAll();
+    }
+
+    @ApiOperation(value = "返回用户列表")
+    @RequestMapping(value = "/findAll",method = RequestMethod.GET)
+    @ResponseBody
+    public List findAll(){
+        return sysUserMapper.findAll();
     }
 }
